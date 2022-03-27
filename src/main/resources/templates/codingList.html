@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+    <title>Codeer list pagina</title>
+</head>
+<header>
+    <div th:replace="fragments/fragments :: navbar">Hier komt de header</div>
+</header>
+<aside>
+    <form>
+        <div>
+            <input type="submit" value="search">
+        </div>
+        <h3>Object oriented? : </h3>
+        <div>
+            <label for="notFree">Yes</label>
+            <input type="radio" name="objectOriented" id="notFree" value="yes" th:checked="${null == true}">
+            <label for="isFree">No</label>
+            <input type="radio" name="objectOriented" id="isFree" value="no" th:checked="${null == false}">
+            <label for="none">None</label>
+            <input type="radio" name="objectOriented" id="none" value="" th:checked="${null == null}">
+        </div>
+        <h3>Search for language: </h3>
+        <div>
+
+        </div>
+    </form>
+</aside>
+<body>
+    <table class="list">
+        <tr th:each="coding: ${list}">
+            <td class="btn" >
+                <a th:href="@{|/codingDetails/${coding.id}}">
+                    <span th:text="${coding.getCoding_name()}">coding name</span>
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

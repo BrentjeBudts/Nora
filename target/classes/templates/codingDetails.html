@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+    <title>Codeer detail pagina</title>
+</head>
+<header>
+    <div th:replace="fragments/fragments :: navbar">Hier komt de header</div>
+</header>
+<main>
+    <div>
+        <div th:if="${code}">
+            <div>
+                <div>Info : </div>
+                <h2 th:text="${code.getCoding_name()}">Naam venue</h2>
+                <table>
+                    <tr>
+                        <td>Description :</td>
+                        <td th:text="${code.getDescription()}">description</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div th:unless="${code}">
+            <p>no coding language was chosen</p>
+        </div>
+    </div>
+</main>

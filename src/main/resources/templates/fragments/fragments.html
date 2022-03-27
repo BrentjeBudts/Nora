@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<div th:fragment="navbar">
+    <h1>Start Developing!</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/index}">Home s</a></li>
+            <li><a th:href="@{/codingList}">Coding Languages</a></li>
+            <li><a th:href="@{/frameEnEngineList}">Frameworks and Engines</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div th:fragment="footer">
+    <p>Copyright Brentje budts</p>
+</div>
+</html>

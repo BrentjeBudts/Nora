@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+    <title>Codeer list pagina</title>
+</head>
+<header>
+    <div th:replace="fragments/fragments :: navbar">Hier komt de header</div>
+</header>
+<aside>
+    <form>
+        <div>
+            <input type="submit" value="search">
+        </div>
+
+        <div>
+            <input type="checkbox" name="popularity" id="popularity" th:checked="${popularity == true}">
+            <label for="popularity">Sort by popularity?</label>
+        </div>
+        <h3>Free for students: </h3>
+        <div>
+            <label for="notFree">Yes</label>
+            <input type="radio" name="paidForStudents" id="notFree" value="yes" th:checked="${paidForStudents == true}">
+            <label for="isFree">No</label>
+            <input type="radio" name="paidForStudents" id="isFree" value="no" th:checked="${paidForStudents == false}">
+            <label for="none">None</label>
+            <input type="radio" name="paidForStudents" id="none" value="" th:checked="${paidForStudents == null}">
+        </div>
+        <h3>Free for companies: </h3>
+        <div>
+            <label for="notFreeC">Yes</label>
+            <input type="radio" name="paidForCompany" id="notFreeC" value="yes" th:checked="${paidForCompany == true}">
+            <label for="isFreeC">No</label>
+            <input type="radio" name="paidForCompany" id="isFreeC" value="no" th:checked="${paidForCompany == false}">
+            <label for="noneC">None</label>
+            <input type="radio" name="paidForCompany" id="noneC" value="" th:checked="${paidForCompany == null}">
+        </div>
+    </form>
+</aside>
+<body>
+<table class="list">
+    <tr th:each="frameEngine: ${list}">
+        <td class="btn" >
+            <a th:href="@{|/frameEnEngineDetails/${frameEngine.id}}">
+                <span th:text="${frameEngine.getName()}">framework or engine name</span>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

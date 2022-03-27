@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+    <title>Framework en engine detail pagina</title>
+</head>
+<header>
+    <div th:replace="fragments/fragments :: navbar">Hier komt de header</div>
+</header>
+<main>
+    <div>
+        <div class="align">
+            <li><a th:href="@{/frameEnEngineDetails/{id}(id=${frameworkEngine.getId()})}">Back</a></li>
+        </div>
+        <div th:if="${frameworkEngine}">
+            <form th:action="@{|/admin/frameworkEdit/${frameworkEngine.id}|}" th:object="${frameworkEngine}" method="post">
+                <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
+                <div class="align">
+                    <input type="submit" value="save">
+                </div>
+                <div>
+                    <input type="text" id="name" th:field="*{name}" th:errorclass="fieldError">
+                    <label for="name">Party Name</label>
+                </div>
+                <div>
+                    <input type="number" id="popularity" th:field="*{popularity}" th:errorclass="fieldError">
+                    <label for="popularity">Party Name</label>
+                </div>
+                <div>
+                    <label for="coding">CodingLanguages</label>
+                    <select id="coding" th:field="*{languages}">
+                        <option th:each="c : ${codings}"  th:value="${c.getId()}" th:text="${c.getCoding_name()}"></option>
+                    </select>
+                </div>
+            </form>
+            <div>
+                <div>Info : </div>
+                <h2 th:text="${frameworkEngine.getName()}">Naam venue</h2>
+                <table>
+                    <tr>
+                        <td>Popularity: </td>
+                        <td th:text="${frameworkEngine.getPopularity()}">uses</td>
+                    </tr>
+                </table>
+            </div>
+            <h2>Coding languages</h2>
+            <div class="btn" th:each="coding: ${frameworkEngine.getLanguages()}">
+                <tr>
+                    <td>
+                        <a th:href="@{|/codingDetails/${coding.getId()}|}"><span th:text="${coding.getCoding_name()}">coding name</span></a>
+                    </td>
+                </tr>
+            </div>
+        </div>
+        <div th:unless="${frameworkEngine}">
+            <p>no coding language was chosen</p>
+        </div>
+    </div>
+</main>
